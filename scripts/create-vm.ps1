@@ -1,35 +1,31 @@
-function Has-Property($object, \[string\] $propertyName)
-{
-    $object.PSObject.Properties.Match($propertyName).Count > 0
-}
-
-# read VM details
-
-$config = (Get-Content vm_details.json) -join "`n" | ConvertFrom-Json
+. './utils.ps1'
 
 ##
-## initialise credentials and associated subscription within which
+## Read VM details
+##
+
+$config = Get-ConfigFromJson vm_details.json
+
+##
+## Initialise credentials and associated subscription within which
 ## the VM will be created
 ##
 
-"Adding account '" + $config.accountName + "'"
-
-if ((Has-Property $config, 'accountUsername') -and `
-    (Has-Property $config, 'accountPassword'))
+if ((Has-Property $config 'accountUsername') -and `
+    (Has-Property $config 'accountPassword'))
 {
-    "creating credentials"
+    "** Creating credentials for username '" + $config.accountUsername + "'"
 
-    $securePassword = ConvertTo-SecureString $config.password -AsPlainText -Force
+    $securePassword = ConvertTo-SecureString $config.accountPassword -AsPlainText -Force
     $credentials = New-Object System.Management.Automation.PSCredential ($config.accountUsername, $securePassword)
     #Add-AzureAccount -Credential $credentials
 }
 else
 {
+    "** Interactive account prompt required ..."
+
     # NB: this is an interactive cmdlet and will open a prompt to enter
     # user name and password
-
-"going interactive"
-
     #Add-AzureAccount
 }
 
