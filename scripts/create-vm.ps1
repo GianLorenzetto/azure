@@ -18,7 +18,7 @@ if ((Has-Property $config 'accountUsername') -and `
 
     $securePassword = ConvertTo-SecureString $config.accountPassword -AsPlainText -Force
     $credentials = New-Object System.Management.Automation.PSCredential ($config.accountUsername, $securePassword)
-    #Add-AzureAccount -Credential $credentials
+    Add-AzureAccount -Credential $credentials
 }
 else
 {
@@ -26,7 +26,7 @@ else
 
     # NB: this is an interactive cmdlet and will open a prompt to enter
     # user name and password
-    #Add-AzureAccount
+    Add-AzureAccount
 }
 
 "Creating VM '" + $config.vmName + "'"
