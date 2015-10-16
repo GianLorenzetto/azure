@@ -6,4 +6,4 @@ Azure specific scripts and utilities.
 
 1. create-vm
 
-Interactive cmdlet to create a VM in Azure. Prompts for the account details and the type of VM.
+Interactive function to create a VM in Azure. Reads VM configuration from the *vm_details.json* file, which must be located in the same folder as the script file. If no account details are present, an interactive prompt will open for entering the Azure account details.
