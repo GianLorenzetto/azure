@@ -1,5 +1,18 @@
 {
-	"accountUsername": "username",
-	"accountPassword": "password",
-	"vmName": "win10buildsvr"
+	"account":
+	{
+		"username": "username",
+		"password": "password",	
+	},
+	"vm":
+	{
+		"name": "buildsvr",
+		"size": "Basic_A0",
+		"imageName": "03f55de797f546a1b29d1b8d66be687a__VS-2015-Community-AzureSDK-2.7-WS2012R2",
+		"adminUsername": "admin",
+		"adminPassword": "UseAG00dP@ssword!",
+		"subscriptionName": "Visual Studio Professional with MSDN",
+		"storageAccount": "storageAccountName",
+		"serviceName": "service"
+	}
 }
